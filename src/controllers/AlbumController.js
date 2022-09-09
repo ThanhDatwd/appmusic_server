@@ -35,7 +35,8 @@ class AlbumController {
                 isPuclic : req.body.data.isPuclic||true,
                 isRandom : req.body.data.isRandom||true,
                 byUser   : req.body.data.userId||'',
-                byAdmin  : req.body.data.byAdmin||false
+                byAdmin  : req.body.data.byAdmin||false,
+                songsId   : req.body.data.songId||[]
             })
             res.json({
                 message:'success'
@@ -70,7 +71,7 @@ class AlbumController {
             else {                
             }
             res.json({
-                album:{albumId,albumName,thumbnail,preface,albumSlug,like,updatedAt},
+                album:{albumId,albumName,thumbnail,preface,albumSlug,like,updatedAt,songId},
                 artists:artists[0],
                 songs:songss
             })
@@ -78,6 +79,22 @@ class AlbumController {
             res.status(500).json({ err: 'somthing wrong' })
         }
 
+    }
+    async updateAlbum(req,res){
+          const albumId=req.params.id
+          const album= await Album.findOne({albumId:albumId})
+          const update = await Album.updateOne({albumId:albumId},
+             {
+                  albumName:req.body.name||album.userName,
+                  thumbnail:req.body.thumbnail||album.thumbnail,
+                  like:req.body.like||album.like,
+                  preface:req.body.preface||album.preface,
+                  songId:req.body.songId||album.songId,
+                  isPuclic:req.body.isPuclic||album.isPuclic,
+                  isRandom:req.body.isRandom||album.isRandom,
+                  //   sectionId:req.body.sectionId||album.sectionId,
+             })
+        res.json(update)
     }
 
 }

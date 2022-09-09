@@ -68,7 +68,34 @@ class ArtistController {
         }
 
     }
+    async getMany(req, res){
+        const artistsId = req.body.data
+        let artists = await Artist.aggregate()
+                                .match({artistId: {$in:artistsId}})
+        res.json(artists)
+    }
+    async updateArtist(req,res){
+        const artistId=req.params.id
+        const artist= await Artist.findOne({artistId:artistId})
+        const update = await Artist.updateOne({artistId:artistId},
+             {
+                  artistName:req.body.name||artist.userName,
+                  avatar:req.body.avatar||artist.avatar,
+                  email:req.body.email||artist.email,
+                  follower:req.body.follower||artist.follower,
+                  biography:req.body.biography||artist.biography,
+                  favoriteArtists:req.body.artists||artist.favoriteArtists,
+                  favoriteSongs:req.body.songs||artist.favoriteSongs,
+                  favoriteAlbums:req.body.albums||artist.favoriteAlbums,
+                  favoriteMvs:req.body.mvs||artist.favoriteMvs,
+                  myPlayList:req.body.myPlaylist||artist.myPlayList,
+                  isAdmin:req.body.isAdmin||artist.isAdmin,
+                  isArtist:req.body.isArtist||artist.isArtist,
+                  isVip:req.body.isVip||artist.isVip,
+             })
+        res.json(update)
 
+   }
 }
 
 module.exports = new ArtistController;

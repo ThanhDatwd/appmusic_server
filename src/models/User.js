@@ -21,8 +21,8 @@ const User = new Schema({
     favoriteMvs:[{ type:String, ref: 'musicvideos' }],
     myPlayList:[{ type:String, ref: 'songs' }],
     history:[{type:String,ref: 'songs'}],
-    admin:{type:Boolean,default:false},
-    artist:{type:Boolean,default:false},
+    isAdmin:{type:Boolean,default:false},
+    isArtist:{type:Boolean,default:false},
     isVip:{type:Boolean,default:false},
   });
   

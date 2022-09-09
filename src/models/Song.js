@@ -24,7 +24,8 @@ const Song = new Schema({
         default:null
     },
     combinedArt:[{ type:String, ref: 'artists' }],
-    albumId:[{ type: mongoose.Types.ObjectId, ref: 'album' }]
+    albumId:[{ type: mongoose.Types.ObjectId, ref: 'album' }],
+    isVip:{type:Boolean, default:false}
   });
   
   // Add plugin

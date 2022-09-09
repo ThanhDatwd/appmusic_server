@@ -33,8 +33,8 @@ const Song = require('../models/Song')
                     favoriteAlbums:req.body.albums|| user.favoriteAlbums,
                     favoriteMvs:req.body.mvs|| user.favoriteMvs,
                     myPlayList:req.body.myPlaylist|| user.myPlayList,
-                    admin:req.body.admin|| user.admin,
-                    artist:req.body.artist|| user.artist,
+                    isAdmin:req.body.isAdmin|| user.isAdmin,
+                    isArtist:req.body.isArtist|| user.isArtist,
                     isVip:req.body.isVip|| user.isVip,
                })
           res.json(update)
