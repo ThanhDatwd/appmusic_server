@@ -1,12 +1,12 @@
 const express = require('express')
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 const multer  = require("multer");
-const  customId = require("custom-id");
 const fileUpload=require('express-fileupload')
 const bodyParser = require('body-parser')
 
-
+// mongoose.set('strictQuery', false);
 const dotenv = require('dotenv')
 dotenv.config()
 

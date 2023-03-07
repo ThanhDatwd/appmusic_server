@@ -26,7 +26,6 @@ class SongController {
                         .project({ _id: 0 })
                     const item = {}
                     songss.push({ ...song, combinedArt })
-                    console.log(songss)
                 })
                 await Artist.aggregate().match({ artistId: { $in: ['0'] } })
             }
